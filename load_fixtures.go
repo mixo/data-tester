@@ -17,7 +17,8 @@ var (
 	}
 	tableName   = "datatester_fixture"
 	columns     = []string{"date", "int_param", "float_param", "group_param"}
-	columnsSql  = []string{"\"date\" date", "\"int_param\" integer", "\"float_param\" numeric(10, 2)", "group_param varchar"}
+	columnsSql  = []string{"`date` date", "`int_param` integer", "`float_param` numeric(10, 2)", "`group_param` varchar(255)"}
+// 	columnsSql  = []string{"\"date\" date", "\"int_param\" integer", "\"float_param\" numeric(10, 2)", "group_param varchar"}
 	valueDefinitions = [][]interface{}{
 	    []interface{}{"int", 300, 330},
 	    []interface{}{"float", 1000.1, 1100.25},

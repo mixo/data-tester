@@ -22,8 +22,8 @@ func (this DataLoader) Load(
 		rowCountGenerator RowCountGenerator
 		rowGenerator      RowGenerator
 		rows              [][]interface{}
-		//db gosql.DB = gosql.DB{"mysql", "127.0.0.1", "3306", "root", "root", "test"}
-		db gosql.DB = gosql.DB{"postgres", "127.0.0.1", "5432", "test", "test", "test"}
+		db gosql.DB = gosql.DB{"mysql", "127.0.0.1", "3306", "root", "", "test"}
+		//db gosql.DB = gosql.DB{"postgres", "127.0.0.1", "5432", "test", "test", "test"}
 	)
 
 	db.DropTable(this.TableName)
@@ -37,7 +37,7 @@ func (this DataLoader) Load(
 }
 
 func (this DataLoader) Unload() {
-	//db := gosql.DB{"mysql", "127.0.0.1", "3306", "root", "root", "test"}
-	db := gosql.DB{"postgres", "127.0.0.1", "5432", "test", "test", "test"}
+	db := gosql.DB{"mysql", "127.0.0.1", "3306", "root", "", "test"}
+	//db := gosql.DB{"postgres", "127.0.0.1", "5432", "test", "test", "test"}
 	db.DropTable(this.TableName)
 }
