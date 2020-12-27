@@ -85,14 +85,14 @@ func (this DayFluctuationTester) GetCliCommand() *cli.Command {
 }
 
 func (this DayFluctuationTester) Test(db gosql.DB,
-	tableName, dateColumn, numericColumnsString, groupColumn, filteredGroupsString string,
+	tableName, dateColumn, numericColumnsList, groupColumn, filteredGroupsString string,
 	dayIndent, maxDiff, numberDays int) TestResult {
 
 	quantityColumn := "_quantity"
 	day := time.Now().AddDate(0, 0, dayIndent)
 	startDate := day.AddDate(0, 0, -numberDays)
 	endDate := day.AddDate(0, 0, -1)
-	numericColumns := strings.Split(numericColumnsString, ",")
+	numericColumns := strings.Split(numericColumnsList, ",")
 	filteredGroupStrings := strings.Split(filteredGroupsString, ",")
 	filteredGroups := make([]interface{}, 0)
 	for _, filteredGroupString := range filteredGroupStrings {

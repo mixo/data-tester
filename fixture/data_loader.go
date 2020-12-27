@@ -128,8 +128,8 @@ func (this DataLoader) Load(db gosql.DB,
 	}
 }
 
-func (this DataLoader) Unload() {
-	db := gosql.DB{"mysql", "127.0.0.1", "3306", "root", "", "test"}
+func (this DataLoader) Unload(db gosql.DB) {
+// 	db := gosql.DB{"mysql", "127.0.0.1", "3306", "root", "", "test"}
 	//db := gosql.DB{"postgres", "127.0.0.1", "5432", "test", "test", "test"}
 	db.DropTable(this.TableName)
 }
