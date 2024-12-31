@@ -1,12 +1,15 @@
-FROM golang:alpine AS builder
+FROM golang:1.21 AS builder
 
-RUN apk update && apk add --no-cache git
-RUN GO111MODULE=off go get github.com/mixo/data-tester
-WORKDIR /go/src/github.com/mixo/data-tester/
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o data-tester data_tester.go
+WORKDIR /
+COPY . .
+RUN apt-get update && \
+    apt-get install -y git ca-certificates tzdata gcc libc-dev openssh-client && \
+    update-ca-certificates
+RUN go mod download
+RUN CGO_ENABLED=0 GOOS=linux go build -o data-tester data_tester.go
 
 FROM scratch
-
-COPY --from=builder /go/src/github.com/mixo/data-tester/data-tester /bin/
+WORKDIR /
+COPY --from=builder /data-tester /bin/
 ENTRYPOINT ["data-tester"]
 CMD []
